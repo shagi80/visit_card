@@ -1,0 +1,263 @@
+<pre><code class="language-python">
+unit MyBiographyClass;
+
+// My biography
+// Delphi 10 Lite
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, MaskUtils, Contnrs, StdCtrls;
+
+type
+  TGender = (gnMale, gnFemale);
+
+  TEducationLevel = (edNone, edSecondary, edSecondVocational, edHigher,
+    edCourses);
+
+  TMaritalStatus = (msSingle, msMarried, msDivorced);
+
+  TEducation = record
+    Level: TEducationLevel;
+    EndYear: Integer;
+    Institution: String;
+    Speciality: String;
+    Success: String;
+  end;
+
+  TContact = record
+    Phone: String;
+    Email: String;
+    Telegram: String;
+  end;
+
+  TPerson = class(TObject)
+  private
+    FBirthday: TDate;
+    FGender: TGender;
+    FSurname: String;
+    FName: String;
+    FPatronymic: String;
+    FEducationList: TList;
+    FMaritalStatus: TMaritalStatus;
+    FChild: TObjectList;
+    FCity: String;
+    FContact: TContact;
+    function GetAge: byte;
+    function GetEducation(Ind: byte): TEducation;
+    function GetChildCount: byte;
+    function CheckChild: boolean;
+    function GetChild(Ind: byte): TPerson;
+  public
+    constructor Create(Birthday: TDate; Gender: TGender);
+    destructor Destroy; override;
+    property Birthday: TDate read FBirthday;
+    property Gender: TGender read FGender;
+    property Surname: String read FSurname write FSurname;
+    property Name: String read FName write FName;
+    property Patronymic: String read FPatronymic write FPatronymic;
+    property Age: byte read GetAge;
+    property EducationItem[Ind: byte]: TEducation  read GetEducation;
+    property MaritalStatus: TMaritalStatus read FMaritalStatus
+      write FMaritalStatus;
+    property ChildCount: byte read GetChildCount;
+    property Children[Ind: byte]: TPerson read GetChild;
+    property HaveChild: boolean read CheckChild;
+    property City: String read FCity write FCity;
+    property Contact: TContact read FContact;
+    procedure AddEducation(Education: TEducation); overload;
+    procedure AddEducation(Level: TEducationLevel; EndYear: Integer;
+      Institution: String; Speciality: String; Success: String=''); overload;
+    procedure AddChild(Child: TPerson);
+    function ChangePhone(Value: String): boolean;
+    function ChangeEmail(Value: String): boolean;
+    function ChangeTelegram(Value: String): boolean;
+  end;
+
+  TForm1 = class(TForm)
+    Button1: TButton;
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+uses DateUtils, StrUtils;
+
+constructor TPerson.Create(Birthday: TDate; Gender: TGender);
+begin
+  inherited Create;
+  FBirthday := Birthday;
+  FGender := Gender;
+  FEducationList := TList.Create;
+  FMaritalStatus := msSingle;
+  FChild := TObjectList.Create(False);
+
+  AddEducation(edNone, 0, '', '');
+end;
+
+destructor TPerson.Destroy;
+begin
+  FEducationList.Free;
+  FChild.Free;
+  inherited Destroy;
+end;
+
+function TPerson.GetAge: byte;
+begin
+  Result := DateUtils.YearsBetween(Now, FBirthday);
+end;
+
+function TPerson.GetEducation(Ind: byte): TEducation;
+var
+  PEducation: ^TEducation;
+begin
+  PEducation := nil;
+  if Ind < FEducationList.Count then
+    PEducation := FEducationList[Ind];
+  Result := PEducation^;
+end;
+
+function TPerson.GetChildCount: byte;
+begin
+  Result := FChild.Count;
+end;
+
+function TPerson.CheckChild: boolean;
+begin
+  Result := (FChild.Count > 0);
+end;
+
+function TPerson.GetChild(Ind: byte): TPerson;
+begin
+  Result := nil;
+  if (Ind < FChild.Count) then
+    Result := TPerson(FChild[Ind]);
+end;
+
+procedure TPerson.AddEducation(Education: TEducation);
+var
+  PEducation: ^TEducation;
+begin
+  new(PEducation);
+  PEducation^ := Education;
+  FEducationList.Add(PEducation);
+end;
+
+procedure TPerson.AddEducation(Level: TEducationLevel; EndYear: Integer;
+  Institution: String; Speciality: String; Success: String='');
+var
+  Education: TEducation;
+begin
+  Education.Level := Level;
+  Education.EndYear := EndYear;
+  Education.Institution := Institution;
+  Education.Success := Success;
+  AddEducation(Education);
+end;
+
+procedure TPerson.AddChild(Child: TPerson);
+begin
+  FChild.Add(Child);
+end;
+
+function TPerson.ChangePhone(Value: String): boolean;
+var
+  I: Integer;
+  NormPhone: String;
+begin
+  Result := False;
+  NormPhone := '';
+  for I := 1 to Length(Value) do
+    if Value[I] in ['0'..'9'] then
+      NormPhone := NormPhone + Value[I];
+  if Length(NormPhone) <> 11 then
+    Exit;
+  if NormPhone[1] = '7' then
+    NormPhone[1] := '8';
+  FContact.Phone := NormPhone;
+  Result := True;
+end;
+
+function TPerson.ChangeEmail(Value: String): boolean;
+var
+  I: Integer;
+  IsMatch: Boolean;
+  Masks: array of String;
+  NormStr: String;
+  PrevSymb: char;
+begin
+  NormStr := '';
+  PrevSymb := chr(0);
+  for I := 1 to Pos('.', Value) - 1 do
+    if Value[I]  = '@' then begin
+      NormStr := NormStr + Value[I];
+      PrevSymb := Value[I];
+    end else
+      if not(PrevSymb = '*') then begin
+        NormStr := NormStr + '*';
+        PrevSymb := '*';
+      end;
+  NormStr := NormStr + Copy(Value, Pos('.', Value), MaxInt);
+  SetLength(Masks, 2);
+  Masks[0] := '*@*.com';
+  Masks[1] := '*@*.ru';
+  IsMatch := StrUtils.MatchStr(NormStr, Masks);
+  if IsMatch then
+    FContact.Email := Value;
+  Result := IsMatch;
+  SetLength(Masks, 0);
+end;
+
+function TPerson.ChangeTelegram(Value: String): boolean;
+begin
+  Result := False;
+  if (Length(Value) > 1) and (Value[1] = '@') then begin
+    FContact.Telegram := Value;
+    Result := True;
+  end;
+end;
+
+{ Form1 }
+
+procedure TForm1.Button1Click(Sender: TObject);
+var
+  ItIsMe: TPerson;
+  Sasha: TPerson;
+begin
+  ItIsMe := TPerson.Create(StrToDate('19.06.1980'), gnMale);
+  ItIsMe.Surname := 'Шагинян';
+  ItIsMe.Name := 'Сергей';
+  ItIsMe.Patronymic := 'Валерьевич';
+  ItIsMe.AddEducation(
+    edHigher,
+    2002,
+    'Новочеркасский Военный Инстиут Связи',
+    'Управление частями и подразделениями с электропроводными средствами связи',
+    'Диплом с отличием, золотая медаль.');
+  ItIsMe.AddEducation(
+    edCourses,
+    2023,
+    'ScillFactory',
+    'Ful-stack разработчик на Python');
+  ItIsMe.MaritalStatus := msMarried;
+  ItIsMe.City := 'Краснодар';
+  Sasha := TPerson.Create(StrToDate('13.05.2014'), gnMale);
+  Sasha.Name := 'Александр';
+  ItIsMe.AddChild(Sasha);
+  ItIsMe.ChangePhone('+7(918)184-94-25');
+  ItIsMe.ChangeEmail('shagi80@mail.com');
+  ItIsMe.ChangeTelegram('@shagi80');
+end;
+
+end.
+</code></pre>

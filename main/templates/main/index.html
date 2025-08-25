@@ -1,0 +1,126 @@
+{% extends 'base_template.html' %}
+{% load static %}
+
+{% block content %}
+<div class="page-header clear-filter page-header-small" filter-color="orange">
+  <div class="page-header-image" data-parallax="true" style="background-image:url({% static 'img/bg5.jpg' %});">
+  </div>
+  <div class="container">
+    <div class="photo-container">
+      <img src="{% static 'img/ryan.jpg' %}" alt="">
+    </div>
+    <h3 class="title">Шагинян Сергей</h3>
+    <p class="category">Разработчик, Инженер, Менеджер</p>
+  </div>
+</div>
+<div class="section">
+  <div class="container">
+    <!-- Skills cards -->
+    <div  class="container d-flex justify-content-center grap-5 flex-wrap">
+      <div class="card mx-1" style="width: 20rem;">
+        <img class="card-img-top mt-3" src="{% static 'img/delphi.jpg' %}" alt="Card image cap">
+        <div class="card-body text-center">
+          <h4 class="card-title">Delphi разработчик</h4>
+          <p class="my-card-text">Многолетнй опыт разработки desctop-приложений с целью оптимизации производственных бизнес-процессов.</p>
+          <a href="{% url 'projects-category' category='delphi' %}" class="btn btn-primary">Подробнее</a>
+        </div>
+      </div>
+      <div class="card mx-1" style="width: 20rem;">
+        <img class="card-img-top mt-3" src="{% static 'img/python.jpg' %}" alt="Card image cap">
+        <div class="card-body text-center">
+          <h4 class="card-title">Python разработчик</h4>
+          <p class="my-card-text">Разработка и внедрение Web и desctop приложений, работа в SCRUM проектах. Диплом государсвенного образца.</p>
+          <a href="{% url 'projects-category' category='python' %}" class="btn btn-primary">Подробнее</a>
+        </div>
+      </div>
+      <div class="card mx-1" style="width: 20rem;">
+        <img class="card-img-top mt-3" src="{% static 'img/engineering.jpg' %}" alt="Card image cap">
+        <div class="card-body text-center">
+          <h4 class="card-title">Инженер</h4>
+          <p class="my-card-text">Эксплуатация и ремонт КИПиА. Программирование микроконтроллеров. Разработка тех. документации.</p>
+          <a href="{% url 'projects-category' category='engineer' %}" class="btn btn-primary">Подробнее</a>
+        </div>
+      </div>
+      <div class="card mx-1" style="width: 20rem;">
+        <img class="card-img-top mt-3" src="{% static 'img/supervisor.jpg' %}" alt="Card image cap">
+        <div class="card-body text-center">
+          <h4 class="card-title">Менеджер</h4>
+          <p class="my-card-text">Более 20-ти лет опыта в управлении персоналом. 16-лет руководства производственным предприятием.</p>
+          <a href="{% url 'projects-category' category='manager' %}" class="btn btn-primary">Подробнее</a>
+        </div>
+      </div>
+    </div>
+    <!--About me -->
+    <h3 class="title" id="about_me">Обо мне</h3>
+    <h5 class="description text-black">У меня за плечами большой опыт автоматизации производственных процессов путем разработки и внедрения прикладных desctop и web приложений.  все еще интересно учится, я стремлюсь развиваться и совершествоваться. Я многозадачен, но внимателен к деталям. Вдумчив, упорядочен, отвественнен и пунктуален. Умею работать в комманде, а в работе ценю интересные задачи.</h5>
+    <!--Biography  -->
+    <div class="row" id="contact">
+      <div class="col-md-11 ml-auto col-xl-9 mr-auto">
+          <p class="category">Общие биографические данные</p>
+          <!-- Nav tabs -->
+          <div class="card mt-3">
+            <div class="card-header">
+              <ul class="nav nav-tabs justify-content-center" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" href="#text" role="tab">
+                    <img src="{% static 'img/icoText.svg' %}" alt="Иконка" width="16" height="16"> Текст
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#delphi" role="tab">
+                    <img src="{% static 'img/icoDelphi.svg' %}" alt="Иконка" width="16" height="16"> Delphi
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#python" role="tab">
+                    <img src="{% static 'img/icoPython.svg' %}" alt="Иконка" width="16" height="16"> Python
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body" style="position: relative;">
+              <!-- Copy button -->
+              <div  style="position: absolute; top: 0; right: 0; margin-right: 40px">
+                <button class="btn btn-info btn-icon btn-round" type="button" id="copy-button" data-toggle="tooltip" data-placement="bottom" title="Копирование в буфер обмена">
+                  <i class="now-ui-icons files_single-copy-04"></i>
+                </button>
+              </div>
+              <!--Copy result message -->
+              <div class="modal fade modal-mini modal-neutral" id="copyMsgModal" tabindex="-1" role="dialog" aria-labelledby="copyMsg" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <p id="copyMsg">Биография скопирована в буфер обмена !</p>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                      <button type="button" class="btn btn-link btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div> 
+              <!-- Tab panes -->
+              <div class="tab-content my-tab-content" style="height: 400px;" id="content-to-copy">
+                <div class="tab-pane active tab-pane-text" id="text" role="tabpanel">
+                  {% include 'main/inc_text.html' %}
+                </div>
+                <div class="tab-pane" id="delphi" role="tabpanel">
+                  {% include 'main/inc_delphi.html' %}
+                </div>
+                <div class="tab-pane" id="python" role="tabpanel">
+                  {% include 'main/inc_python.html' %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+  <!--Script for copy to clipboard) -->
+  <script src="{% static 'main/js/index.js' %}" type="text/javascript"></script>
+{% endblock %}
+ 

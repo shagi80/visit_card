@@ -1,0 +1,15 @@
+<div class="carousel-item active text-center" data-interval="10000">
+  <img src="{{ MEDIA_URL }}{{ first_images.image }}" class="w-75" alt="...">
+  <div class="p-4 text-center">
+    <p class="carousel-description">{{ first_images.description }}</p>
+  </div>
+</div>
+{% for image in images %}
+  <div class="carousel-item text-center" data-interval="10000">
+    <img src="{{ MEDIA_URL}}{{ image.image }}" class="w-75" alt="...">
+    <div class="p-4 text-center">
+      <p class="carousel-description">{{ image.description }}.</p>
+    </div>
+  </div>
+{% endfor %}
+                

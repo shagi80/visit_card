@@ -1,0 +1,111 @@
+.my-card-text {
+  font-size: 1rem;
+}
+
+.my-tab-content {
+  border: 1px solid rgba(169, 169, 169, 0.595);
+  overflow: scroll;
+}
+
+.tab-pane-text {
+  margin: 2rem;
+}
+
+.tab-pane-text p {
+  line-height: 0.7rem;
+  margin-bottom: 1rem;
+  white-space: nowrap;
+}
+
+/* Customization ckeditor_5 html */
+.skill-description ul > li {
+  padding-left: 5px;
+  line-height: 1.5rem;
+  font-size: 0.9rem;
+  overflow-wrap: break-word;
+  word-break: break-word;   
+  hyphens: auto;
+  margin: 0px;
+  margin-bottom: 0.2rem;
+}
+
+.project-description * {
+  line-height: 1.3rem;  
+  margin: 0.3rem;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;   
+  hyphens: auto !important;
+}
+
+.project-description ul > li {
+  line-height: 1.3rem;  
+  margin: 0.3rem;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;   
+  hyphens: auto !important;
+  color: rgb(240, 69, 69);
+}
+
+/* "my-tabs" use to projects page for customization nav tabs */
+@media (max-width: 999px) {
+  .my-tabs {
+    /* Changing predefined behavior  */
+    display: flex;
+    text-align: left;
+    padding: 0px;
+    flex-wrap: nowrap;
+  }
+  
+  .my-tabs .nav-link img {
+    /* Increase icons size */
+    margin-right: 0;
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+  }
+  
+  .my-tabs .nav-link span, 
+  .my-tabs .nav-link:after {
+    /* Hide text */
+    display: none;
+  }
+}
+
+@media (max-width: 499px) {
+  .my-tabs {
+    /* Return predefined behavior  */
+    display: inline-block;
+    width: 100%;
+  }
+
+  .my-tabs .nav-link span, 
+  .my-tabs .nav-link:after {
+    /* Show text */
+    display: inline-flex;
+  }
+
+}
+
+.my-prev-icon {
+    background-image: url('/static/img/left_button.png');
+    width: 48px;
+    height: 48px;
+}
+
+.my-next-icon {
+    background-image: url('/static/img/right_button.png');
+    width: 48px;
+    height: 48px;
+}
+
+.carousel-description {
+  background-color: transparent;
+  font-size: 0.9rem;
+}
+
+.my-carousel-inner {
+  height: 75vh;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
