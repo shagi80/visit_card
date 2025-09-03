@@ -14,9 +14,10 @@ class ProjectCategoryAdmin(admin.ModelAdmin):
                        'image',
                        'image_preview',
                        'hint',
+                       'short_description',
+                       'order',
                        'skills',
-                       'resume',
-                       'order'
+                       'resume'
                        ),
         })
     ]

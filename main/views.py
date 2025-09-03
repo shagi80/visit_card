@@ -20,6 +20,7 @@ class IndexPage(TemplateView):
         context = super().get_context_data(**kwargs)
         context["age"] = GetMyAge()
         context["navbar_transparent"] = True
+        context['categories'] = ProjectCategory.objects.all()[1:]
         return context
 
 

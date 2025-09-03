@@ -13,6 +13,8 @@ function deactivateAllProjectButtons() {
 document.addEventListener('DOMContentLoaded', function() {
   const category = JSON.parse(document.getElementById('category').textContent);
 
+  document.getElementById('navbar').classList.add('bg-secondary'); 
+
   deactivateAllProjectButtons();
   // Get category slug from server and activate corresponding button
   if (! category) {

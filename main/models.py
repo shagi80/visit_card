@@ -38,14 +38,23 @@ class ProjectCategory(models.Model):
 
     hint = models.CharField(
         max_length=150,
-        validators=[MinLengthValidator(10, _('Минимум 10 символов'))],
         blank=False,
         null=True,
-        verbose_name=_('Подсказка (краткое описание)'),
-        help_text=_('10 - 150 символов')
+        verbose_name=_('Подсказка для кнопки'),
+        help_text=_('До 150 символов')
+    )
+
+    short_description = models.TextField(
+        max_length=300,
+        validators=[MinLengthValidator(10, _('Минимум 50 символов'))],
+        blank=False,
+        null=True,
+        verbose_name=_('Краткое описание'),
+        help_text=_('10 - 300 символов')
     )
 
     skills = CKEditor5Field(
+        blank=True,
         verbose_name=_('Описание навыков'),
         help_text=_('Форматированный текст с HTML')
     )
@@ -141,6 +150,10 @@ class Project(models.Model):
             category=_(category_title),
             title=_(self.title)
             )
+
+    @property
+    def add_images(self):
+        return self.projectimage_set.all()
 
     # Clear HTML before save
     def save(self, *args, **kwargs):
