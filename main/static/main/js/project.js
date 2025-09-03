@@ -11,18 +11,21 @@ function deactivateAllProjectButtons() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  const category = JSON.parse(document.getElementById('category').textContent);
+    const category = JSON.parse(document.getElementById('category').textContent);
 
-  document.getElementById('navbar').classList.add('bg-secondary'); 
+    document.getElementById('navbar').classList.add('bg-secondary'); 
 
-  deactivateAllProjectButtons();
-  // Get category slug from server and activate corresponding button
-  if (! category) {
-      document.getElementById('btn_all').classList.add('active')
-  } else {
-      const button_id = `btn_${category}`;
-      document.getElementById(button_id).classList.add('active');
-  };
+    deactivateAllProjectButtons();
+    // Get category slug from server and activate corresponding button
+    if (! category) {
+        const btn_all = document.getElementById('btn_all');
+        if (btn_all) {
+            btn_all.classList.add('active')
+        };
+    } else {
+        const button_id = `btn_${category}`;
+        document.getElementById(button_id).classList.add('active');
+};
 
   // Show images Modal
   document.querySelectorAll('.btn-images').forEach(button => {
