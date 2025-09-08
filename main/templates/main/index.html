@@ -32,8 +32,8 @@
     {%  endfor %}
 </section>
 
+<!-- SoftSkills -->
 <section class="container mt-5 text-center scaled">
-    <!-- SoftSkills -->
     <h2 class="card-title text-primary" id="soft_skills">Soft Skills</h2>
     <p class="text-secondary my-4">
         Высокомотивированный специалист с большим стажем в области разработки и внедрения ПО для автоматизации производственных процессов. Огромный пласт знаний получены путем самообразования, что свидетельствует о высокой обучаемости и целеустремленности. Ключевые качества: аналитический ум, исполнительность, обязательность и умение доводить проекты до успешного завершения, эффективно взаимодействуя с командой.
@@ -64,13 +64,16 @@
     <picture>
         <source media="(max-width: 576px)" srcset="{% static 'img/i_love_it_2.jpg' %}">
         <source media="(max-width: 768px)" srcset="{% static 'img/i_love_it_1.jpg' %}">
-        <img class="w-50 my-2" src="{% static 'img/i_love_it.jpg' %}" alt="I love IT">
+        <img class="w-50 mt-2" src="{% static 'img/i_love_it.jpg' %}" alt="I love IT">
     </picture>
+</section>
 
-    <!-- Biography -->
-    <h2 class="card-title text-primary mt-3 mb-4" id="biography">Biorgaphy & Contacts</h2>
+<!-- Biography -->
+<section class="container my-5 text-center scaled">
+    
+    <h2 class="card-title text-primary mb-4" id="biography">Biorgaphy & Contacts</h2>
 
-    <div class="border p-4 rounded-start rounded-end border-info my-3 scaled">
+    <div class="border p-4 rounded-start rounded-end border-info my-3">
         <!-- Bigraphy buttons -->
         <ul class="nav nav-pills mb-3 justify-content-center gap-3" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -129,7 +132,6 @@
             </div>
         </div>
     </div>
-    
 </section>
 
 {% endblock %}
