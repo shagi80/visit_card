@@ -11942,7 +11942,7 @@ textarea.form-control-lg {
     background-image: url("../img/bg2.jpg");
   }
 }
-@media (max-width: 768px) and (max-width: 576px) {
+@media (max-width: 576px) {
   .bg-image-full {
     background-image: url("../img/bg3.jpg");
   }
