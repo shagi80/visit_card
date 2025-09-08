@@ -11,6 +11,20 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 from pathlib import Path
+from dotenv import load_dotenv 
+from django.core.exceptions import ImproperlyConfigured
+
+
+load_dotenv()
+
+
+def get_env_variable(var_name):
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        error_msg = f"Set the {var_name} environment variable"
+        raise ImproperlyConfigured(error_msg)
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +34,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7_)c)j*o^l#bztl_z0*4r*j_99ujyqw0c6$#0rp^vx(%prk9-$'
-
-ALLOWED_HOSTS = ['shagi80.beget.tech', 'svshaginyan.store', 'svshaginyan.ru' ]
-
+SECRET_KEY = get_env_variable('SECRET_KEY')
 
 # Application definition
 
@@ -124,7 +135,6 @@ CKEDITOR_5_CONFIGS = {
 
     },
 }
-
 
 # MEDIA folder
 

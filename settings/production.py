@@ -1,10 +1,10 @@
 from .base import *
+from .base import BASE_DIR, get_env_variable
 
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['shagi80.beget.tech', 'svshaginyan.store', 'svshaginyan.ru' ]
-
 
 DATABASES = {
     'default': {
