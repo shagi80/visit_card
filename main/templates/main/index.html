@@ -59,7 +59,11 @@
         </div>
     </div>
     
-    <img class="w-50 my-2" src="{% static 'img/i_love_it.jpeg' %}" alt="I love IT">
+    <picture>
+        <source media="(max-width: 576px)" srcset="{% static 'img/i_love_it_2.jpg' %}">
+        <source media="(max-width: 768px)" srcset="{% static 'img/i_love_it_1.jpg' %}">
+        <img class="w-50 my-2" src="{% static 'img/i_love_it.jpg' %}" alt="I love IT">
+    </picture>
 
     <!-- Biography -->
     <h2 class="card-title text-primary mt-3 mb-4" id="biography">Biorgaphy & Contacts</h2>
