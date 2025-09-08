@@ -11860,6 +11860,7 @@ textarea.form-control-lg {
   }
 }
 .bg-image-full {
+  background-image: url("../img/bg1.jpg");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center;
@@ -11916,17 +11917,17 @@ textarea.form-control-lg {
   color: rgba(40, 126, 154, 0.8);
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1200px) {
   .scaled {
     width: 75%;
   }
 }
-@media (max-width: 1000px) {
+@media (max-width: 992px) {
   .scaled {
     width: 82%;
   }
 }
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .scaled {
     width: 90%;
   }
@@ -11936,6 +11937,14 @@ textarea.form-control-lg {
   .nav-item img {
     width: 32px;
     height: 32px;
+  }
+  .bg-image-full {
+    background-image: url("../img/bg2.jpg");
+  }
+}
+@media (max-width: 768px) and (max-width: 576px) {
+  .bg-image-full {
+    background-image: url("../img/bg3.jpg");
   }
 }
 
