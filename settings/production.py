@@ -1,19 +1,19 @@
 from .base import *
-from .base import BASE_DIR, get_env_variable
+from .base import get_env_variable
 
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['shagi80.beget.tech', 'svshaginyan.store', 'svshaginyan.ru' ]
+ALLOWED_HOSTS = ['svshaginyan.store', 'svshaginyan.ru']
 
 DATABASES = {
     'default': {
         'ENGINE': 'dj_db_conn_pool.backends.mysql',
-        'NAME': 'shagi80_vscard',
-        'USER': 'shagi80_vscard',
-        'PASSWORD': 'Shrtyjk_8006',
+        'NAME': get_env_variable('DB_NAME'),
+        'USER': get_env_variable('DB_USER'),
+        'PASSWORD': get_env_variable('DB_PASSWORD'),
         'HOST': 'localhost',
-        'PORT': '3306',
+        'PORT': get_env_variable('DB_PORT'),
         'POOL_OPTIONS': {
             'POOL_SIZE': 5,
             'MAX_OVERFLOW': 10,
