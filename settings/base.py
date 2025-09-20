@@ -136,7 +136,3 @@ CKEDITOR_5_CONFIGS = {
     },
 }
 
-# MEDIA folder
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

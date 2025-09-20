@@ -11,3 +11,8 @@ DATABASES = {
         'NAME': BASE_DIR / get_env_variable('DB_NAME'),
     }
 }
+
+# MEDIA folder
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
