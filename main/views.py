@@ -57,7 +57,6 @@ def project_images_list(request, project_pk):
         images = ProjectImage.objects.filter(
             project__pk=project_pk
         ).prefetch_related("project").values('image', 'description')
-        print(images)
 
         if images.exists():
             context['first_images'] = images.first()
