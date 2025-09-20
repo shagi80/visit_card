@@ -40,9 +40,11 @@ class ProjectListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         slug = self.kwargs.get('category')
+        if not slug:
+            slug = 'all'
         сategories = ProjectCategory.objects.all()
         current_category = None
-        if ProjectCategory.get_category_slugs():
+        if (slug in ProjectCategory.get_category_slugs()):
             current_category = сategories.filter(slug=slug).first()
         context['categories'] = сategories
         context['current_category'] = current_category
