@@ -11885,7 +11885,7 @@ textarea.form-control-lg {
 }
 
 .scaled {
-  width: 75%;
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -11914,17 +11914,53 @@ textarea.form-control-lg {
 
 .project-description p,
 .project-description li {
-  color: rgba(40, 126, 154, 0.8);
+  margin-top: 0;
+  margin-bottom: 0;
+  hyphens: auto;
+}
+
+.splitter {
+  border-top: 1px solid;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.img-project {
+  width: 200px;
+  position: absolute;
+  Z-index: 1;
+  right: 0;
+  margin-top: -70px;
+  margin-right: 50px;
+}
+
+.header-project {
+  display: none;
 }
 
 @media (max-width: 1200px) {
   .scaled {
     width: 75%;
   }
+  .img-project {
+    width: 150px;
+    position: absolute;
+    Z-index: 1;
+    right: 0;
+    margin-top: -50px;
+    margin-right: 30px;
+  }
 }
 @media (max-width: 992px) {
   .scaled {
     width: 82%;
+  }
+  .img-project {
+    display: none;
+  }
+  .header-project {
+    display: block;
   }
 }
 @media (max-width: 768px) {
