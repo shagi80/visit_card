@@ -5,7 +5,7 @@
     <meta name="description" content="Sergey Shaginyan. My projects." />
 {% endblock %}
 
-{% block title %}Projects{% endblock %}<
+{% block title %}Projects{% endblock %}
 
 {% block content %}
 
@@ -56,7 +56,7 @@
             </div>
             <div class="col-lg-9">
                 <div class="card-body">
-                    <div class="card-text project-description text-secondary mb-3">{{ project.description|safe }}</div>
+                    <div class="card-text project-description text-secondary mb-5">{{ project.description|safe }}</div>
                     {% if project.add_images %}
                         <button type="button" class="btn btn-outline-primary btn-images" project-pk="{{ project.pk }}" project-title="{{ project }}">Больше информации</button>
                     {% endif %}
