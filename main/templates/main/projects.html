@@ -48,8 +48,7 @@
 
     <!--- Project cards -->
     {% for project in projects %}
-    <div class="card border-secondary p-4 pt-2 shadow mb-5" >
-        
+    <div class="card border-secondary p-4 pt-2 shadow mb-5" >       
         <div class="row g-3 p-3">    
             <h4 class="card-title text-primary mt-4 mb-3">{{ project.title }}</h4>
             <div class="col-lg-3 text-center mt-4">
@@ -57,9 +56,9 @@
             </div>
             <div class="col-lg-9">
                 <div class="card-body">
-                    <div class="card-text project-description text-secondary mb-5">{{ project.description|safe }}</div>
+                    <div class="card-text project-description text-secondary mb-3">{{ project.description|safe }}</div>
                     {% if project.add_images %}
-                        <a href="#" class="btn btn-outline-primary btn-images" project-pk="{{ project.pk }}" project-title="{{ project }}">Больше информации</a>
+                        <button type="button" class="btn btn-outline-primary btn-images" project-pk="{{ project.pk }}" project-title="{{ project }}">Больше информации</button>
                     {% endif %}
                 </div>
             </div>
@@ -68,16 +67,16 @@
     {% endfor %}
     
     <!-- Project additional images modal -->
-    <div class="modal fade" id="imagesModal" tabindex="-1" role="dialog" aria-labelledby="imagesModalLabel" aria-hidden="true">
+    <div class="modal fade" id="imagesModal" tabindex="-1" role="dialog" aria-labelledby="imagesModalLabel" aria-hidden="true" data-bs-backdrop="static">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content p-3">
                 <div class="modal-header">
                     <h5 class="modal-title text-primary" id="imagesModalLabel">Modal title</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                 </div>
-                <div class="modal-body ">
+                <div class="modal-body">
                     <!-- Images carousel -->
-                    <div id="imgCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div id="imgCarousel" class="carousel slide" data-bs-ride="carousel" style="height:400px">
                         <div class="carousel-inner" id="images-body">
 
                         </div>
