@@ -2,10 +2,10 @@
 {% load static %}
 
 {% block meta_description %}
-    <meta name="description" content="Sergey Shaginyan. My projects." />
+    <meta name="description" content="Sergey Shaginyan. {{ current_category.hint }}" />
 {% endblock %}
 
-{% block title %}Projects{% endblock %}
+{% block title %}{{current_category.hint}}{% endblock %}
 
 {% block content %}
 
