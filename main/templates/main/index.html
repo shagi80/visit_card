@@ -144,6 +144,27 @@
 {% endblock %}
 
 {% block scripts %}
+   <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Sergey Shaginyan",
+            "description": "Developer, engineer, manager.",
+            "url": "{{ request.build_absolute_uri }}",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "{{ request.build_absolute_uri }}"
+            },
+            "jobTitle": "Full Stack Developer",
+            "knowsAbout": [
+                "Django",
+                "Python", 
+                "JavaScript",
+                "Engineering",
+                "Project Management"
+            ]
+        }
+    </script>
     <!--Script for copy to clipboard) -->
     <script src="{% static 'main/js/index.js' %}" type="text/javascript"></script>
 {% endblock %}

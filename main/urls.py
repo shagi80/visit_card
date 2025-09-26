@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import IndexPage, ProjectListView, project_images_list
+from .views import IndexPage, ProjectListView, project_images_list, RobotsTxtView
+
 
 urlpatterns = [
     path('', IndexPage.as_view(), name='index'),
@@ -8,4 +9,5 @@ urlpatterns = [
          name='projects-category'),
     path('get_project_images/<int:project_pk>', project_images_list,
          name='projects-images'),
+    path('robots.txt', RobotsTxtView.as_view()),
 ]

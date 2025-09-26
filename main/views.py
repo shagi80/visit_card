@@ -1,8 +1,12 @@
 from datetime import date
 from django.views.generic import TemplateView, ListView
-from .models import Project, ProjectCategory, ProjectImage
 from django.shortcuts import render
 from django.http import Http404
+from django.http import HttpResponse
+from django.views import View
+from django.template import loader
+
+from .models import Project, ProjectCategory, ProjectImage
 
 
 # Calculate age from birthday
@@ -66,3 +70,13 @@ def project_images_list(request, project_pk):
             return render(request, 'main/project_images.html', context)
 
     raise Http404("Project not found or no images available")
+
+
+class RobotsTxtView(View):
+    def get(self, request):
+        template = loader.get_template('main/robots.txt')
+        context = {
+            'sitemap_url': "https://" + request.get_host() + "/sitemap.xml"
+        }
+        return HttpResponse(template.render(context, request),
+                            content_type='text/plain')

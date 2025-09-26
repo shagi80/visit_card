@@ -18,12 +18,23 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
+from main.sitemaps import StaticViewSitemap, ProjectSitemap, CategorySitemap
+
+# Определяем карты для разных моделей
+sitemaps = {
+    'static': StaticViewSitemap,
+    'project_categories': CategorySitemap,
+    'projects': ProjectSitemap,
+}
 
 
 urlpatterns = [
     path('', include('main.urls')),
     path('admin/', admin.site.urls),
     path('ckeditor5/', include('django_ckeditor_5.urls')),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
+         name='django.contrib.sitemaps.views.sitemap')
 ]
 
 if settings.DEBUG:

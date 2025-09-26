@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django_ckeditor_5.fields import CKEditor5Field
 from django.core.validators import MinLengthValidator
+from django.urls import reverse
 
 
 class ProjectCategory(models.Model):
@@ -77,6 +78,9 @@ class ProjectCategory(models.Model):
         verbose_name_plural = _('Категории деятельности')
         ordering = ['order', 'title']
 
+    def get_absolute_url(self):
+        return reverse('projects-category', kwargs={'category': self.slug})
+
     def __str__(self):
         return self.title
 
@@ -140,6 +144,10 @@ class Project(models.Model):
         verbose_name = _('Проект')
         verbose_name_plural = _('Проекты')
         ordering = ['order', '-created_at']
+
+    def get_absolute_url(self):
+        return reverse('projects-category',
+                       kwargs={'category': self.category.slug})
 
     def __str__(self):
         if self.category:
