@@ -120,15 +120,13 @@
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
-            "@type": "SoftwareSourceCode",
+            "@type": "CollectionPage",
             "name": "{{ current_category.title }}",
             "description": "{{ current_category.hint }}",
-            "programmingLanguage": "{{ current_category.slug }}",
             "author": {
                 "@type": "Person",
                 "name": "Sergey Shaginyan"
             },
-            "dateCreated": "2025-09-25T00:00:00+03:00",
             "url": "{{ request.build_absolute_uri }}"
         }
     </script>
