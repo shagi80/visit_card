@@ -120,13 +120,16 @@
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
-            "@type": "Person",
-            "headline": "{{ current_category.hint }}",
-            "datePublished": "2025-09-25T00:00:00+03:00",
+            "@type": "SoftwareSourceCode",
+            "name": "{{ current_category.title }}",
+            "description": "{{ current_category.hint }}",
+            "programmingLanguage": "{{ current_category.slug }}",
             "author": {
                 "@type": "Person",
-                "name": "Sergey Shaginayn"
-            }
+                "name": "Sergey Shaginyan"
+            },
+            "dateCreated": "2025-09-25T00:00:00+03:00",
+            "url": "{{ request.build_absolute_uri }}"
         }
     </script>
      <!--Script for copy to clipboard) -->
